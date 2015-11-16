@@ -4,13 +4,16 @@ riot.developerKey = 'e3285489-6f06-47b3-9b7a-108971753268';
 riot.settings.region = 'na';
 
 function preloadItems(callback){
-	riot.staticData.item({itemListData: 'afll'}, function(err, data){
-		if(err) callback(err);
+	riot.staticData.item({itemListData: 'gold,image'}, function(err, data){
+		if(err) {
+			console.log(err);
+			callback(err);
+		}
 		callback(null, data);
 	});
 }
 
-function calculateCost(items){
+function calculateCost(item){
 
 }
 
