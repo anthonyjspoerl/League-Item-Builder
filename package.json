@@ -13,8 +13,10 @@
     "riot-games-api-nodejs": "^1.0.6"
   },
   "devDependencies": {
+    "chance": "^0.8.0",
     "mocha": "^2.3.3",
     "rewire": "^2.4.0",
-    "riot-games-api-nodejs": "^1.0.6"
+    "riot-games-api-nodejs": "^1.0.6",
+    "sinon": "^1.17.2"
   }
 }
