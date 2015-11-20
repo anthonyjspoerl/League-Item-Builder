@@ -16,7 +16,7 @@ describe('collect-item-data', function(){
 		context('avoid multiple api calls', function(){
 			// increase mocha default timeout for api call
 			// * unfortunately, if these tests fail, some/all others may timeout
-			this.timeout(30000);
+			this.timeout(0);
 
 			it('should save item list from api call', function(done){
 				// when
