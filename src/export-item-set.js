@@ -26,8 +26,11 @@ var riotPath = 'C:\\Riot Games\\League of Legends\\Config\\';
 // });
 
 function buildItemSet(){
+    var title = 'Test page';
+    var champions = [];
+
     var itemSetJSON = {
-        "title": "Test page",
+        "title": title,
         "type": "custom",
         "map": "any",
         "mode": "any",
@@ -51,20 +54,34 @@ function buildItemSet(){
         ]
     };
 
-    saveToFile(itemSetJSON);
+    saveToFile(itemSetJSON, title, champions);
 
     return itemSetJSON;
 }
 
-function saveToFile(itemSet){
-    var filepath = getFilePath('test.json');
-    fileSystem.writeFile(filepath, JSON.stringify(itemSet, null, 4), function(err, data){
-        if(err) console.log(err);
-    });
+function saveToFile(itemSet, title, champions){
+    var filename = title.replace(/\s/g,'') + '.json';
+    if(champions.length === 0){
+        var filepath = getGlobalFilePath(filename);
+        fileSystem.writeFile(filepath, JSON.stringify(itemSet, null, 4), function(err, data){
+            if(err) console.log(err);
+        });
+    } else {
+        champions.forEach(function(champion){
+            var filepath = getChampionFilePath(filename, champion);
+            fileSystem.writeFile(filepath, JSON.stringify(itemSet, null, 4), function(err, data){
+                if(err) console.log(err);
+            });
+        });
+    }
 }
 
-function getFilePath(filename){
-    return riotPath + 'Global\\' + filename;
+function getChampionFilePath(filename, champion){
+    return riotPath + 'Champions\\' + champion + '\\Recommended\\' + filename;
+}
+
+function getGlobalFilePath(filename){
+    return riotPath + 'Global\\Recommended\\' + filename;
 }
 
 buildItemSet();
